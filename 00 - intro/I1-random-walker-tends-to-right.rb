@@ -34,17 +34,18 @@ class Walker
     point(@x, @y)
   end
 
-  # Directs the walker to take a random step
+  # Directs the walker to take a random step in any of 8 possible directions
+  # or stay still
   def walk
-    choice = rand(4)
-    if choice == 0
+    choice = rand(6)
+    if choice < 2
       @x += 1
-    elsif choice == 1
-      @x -= 1
     elsif choice == 2
-      @y += 1
-    else
+      @x -= 1
+    elsif choice == 3
       @y -= 1
+    else
+      @y += 1
     end
   end
 
