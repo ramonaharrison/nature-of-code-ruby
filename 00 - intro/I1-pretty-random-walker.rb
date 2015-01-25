@@ -2,16 +2,18 @@
 # adapted from Dan Shiffman, natureofcode.com
 
 # The code inside setup is run once at the beginning.
+
+
 def setup
-  size 800, 800
+  size 900, 900
   smooth
   background 0
   no_fill
   stroke 1
 
-  @r = 60
-  @g = 190
-  @b = 255
+  $r = 255
+  $g = 255
+  $b = 255
 
   #Initializes a new walker
   @w = Walker.new(width, height)
@@ -23,14 +25,27 @@ def draw
   @w.walk
   @w.display
 
-  @r += 1
+
+  if mouse_x < 300 && $r <= 255
+    $r += 4
+  end
+  if mouse_x < 600 && $g <= 255
+    $g += 4
+  end
+  if mouse_x < 900 && $b <= 255
+    $b += 4
+  end
+
+  if mouse_y > 450 && 0 < $r && 0 < $g && 0 < $b
+    $r -= 8
+    $g -= 8
+    $b -= 8
+  end
+
 
 end
 
 class Walker
-  @r = 0
-  @g = 0
-  @b = 0
 
   # New walkers are created in the center of the canvas
   def initialize(width, height)
@@ -40,7 +55,7 @@ class Walker
 
   # Walker displays itself as a black dot
   def display
-    stroke(@r, @g, @b)
+    stroke($r, $g, $b)
     point(@x, @y)
   end
 
