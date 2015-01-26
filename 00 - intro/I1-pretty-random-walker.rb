@@ -11,10 +11,6 @@ def setup
   no_fill
   stroke 1
 
-  $r = 255
-  $g = 255
-  $b = 255
-
   #Initializes a new walker
   @w = Walker.new(width, height)
 
@@ -24,24 +20,6 @@ end
 def draw
   @w.walk
   @w.display
-
-
-  if mouse_x < 300 && $r <= 255
-    $r += 4
-  end
-  if mouse_x < 600 && $g <= 255
-    $g += 4
-  end
-  if mouse_x < 900 && $b <= 255
-    $b += 4
-  end
-
-  if mouse_y > 450 && 0 < $r && 0 < $g && 0 < $b
-    $r -= 8
-    $g -= 8
-    $b -= 8
-  end
-
 
 end
 
@@ -55,7 +33,8 @@ class Walker
 
   # Walker displays itself as a black dot
   def display
-    stroke($r, $g, $b)
+    stroke(rand(255), rand(255), rand(255))
+    ellipse(@x, @y, 1, 1);
     point(@x, @y)
   end
 
