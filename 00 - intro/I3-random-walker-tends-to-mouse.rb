@@ -46,8 +46,18 @@ class Walker
       @x += choicex
       @y += choicey
     else
-      @x = @x mouse_x
-      @y = @y mouse_y
+      if mouse_x < @x
+        @x -= 1
+      else
+        @x += 1
+      end
+
+      if mouse_y < @y
+        @y -= 1
+      else
+        @y += 1
+      end
+
     end
 
   end
