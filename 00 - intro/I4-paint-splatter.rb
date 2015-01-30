@@ -4,16 +4,18 @@ import java.util.Random
 def setup
 
   size 800, 800
-  background 255
+  background 212, 238, 255
   @generator = Random.new
 
 end
 
 def draw
-  sd = 100
-  mean = 400
-  x = @generator.nextGaussian.to_f * sd * mean
-  y = @generator.nextGaussian.to_f * sd * mean
+
+  sd = width/8
+  mean = height/2
+
+  x = (@generator.nextGaussian.to_f * sd) + mean
+  y = (@generator.nextGaussian.to_f * sd) + mean
   paint_spot = Splatter.new(x, y)
 
 end
@@ -21,8 +23,9 @@ end
 class Splatter
 
   def initialize(x, y)
+    no_stroke
     fill(rand(255), rand(255), rand(255))
-    ellipse(x, y, 20, 20);
+    ellipse(x, y, 10, 30);
   end
 
 end
